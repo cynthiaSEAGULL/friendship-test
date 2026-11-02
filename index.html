@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>后会友期 · 友情车票 | 过期友情深度测评</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0F16'/%3E%3Ccircle cx='16' cy='13' r='6' fill='%23E08A45'/%3E%3Cpath d='M3 24h26' stroke='%23E08A45' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M3 28h26' stroke='%23F4EEE5' stroke-width='1.5' stroke-dasharray='4 3' opacity='.5'/%3E%3C/svg%3E">
+<meta name="description" content="十五道情境题，测出你和那位旧友卡在了哪里。灵感来自《后会友期》。支持双人对测，看你们对同一段关系的视角差。">
+<meta property="og:title" content="后会友期 · 友情车票">
+<meta property="og:description" content="测测你和那位走散的旧友，卡在了哪里。">
+<style>
+:root{
+  --ink:#0E0F16;
+  --ink-2:#16171F;
+  --paper:#F4EEE5;
+  --paper-dim:#C9C1B6;
+  --amber:#E08A45;
+  --amber-soft:#F0B77E;
+  --rust:#C0503C;
+  --sage:#7E9B91;
+  --violet:#8B7CB4;
+  --line:rgba(244,238,229,.14);
+  --font-s:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --font-r:"Songti SC","Noto Serif SC","Source Han Serif SC","STSong",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--font-s);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 80% -10%, rgba(224,138,69,.16), transparent 60%),
+    radial-gradient(90% 70% at 10% 110%, rgba(139,124,180,.15), transparent 60%),
+    linear-gradient(180deg,#0E0F16 0%,#131420 50%,#0C0D13 100%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+#app{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:0 20px 80px}
+
+/* ---------- 通用 ---------- */
+.eyebrow{font-size:11px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;font-weight:600}
+.rule{height:1px;background:var(--line);margin:22px 0}
+.fade{animation:fade .5s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hidden{display:none !important}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 26px;border-radius:999px;border:1px solid var(--amber);
+  background:var(--amber);color:#231405;font-weight:600;font-size:15px;
+  cursor:pointer;transition:.22s;font-family:inherit;letter-spacing:.04em;
+}
+.btn:hover{background:var(--amber-soft);border-color:var(--amber-soft);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--paper);border-color:rgba(244,238,229,.3)}
+.btn.ghost:hover{background:rgba(244,238,229,.08);border-color:var(--paper)}
+.btn.sm{padding:9px 18px;font-size:13px}
+
+/* ---------- 首屏 ---------- */
+#intro{padding-top:64px;text-align:center}
+.brand{font-family:var(--font-r);font-size:15px;letter-spacing:.5em;color:var(--paper-dim);margin-bottom:28px}
+.hero{font-family:var(--font-r);font-size:44px;line-height:1.25;font-weight:600;letter-spacing:.04em;margin-bottom:6px}
+.hero em{font-style:normal;color:var(--amber)}
+.sub-hero{font-family:var(--font-r);font-size:17px;color:var(--paper-dim);letter-spacing:.06em;margin-bottom:26px}
+.lede{font-size:14.5px;color:rgba(244,238,229,.68);max-width:420px;margin:0 auto;line-height:1.95}
+.poster{
+  margin:32px auto 30px;max-width:430px;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);position:relative;background:#101119;
+}
+.poster svg{display:block;width:100%;height:auto}
+.caption{font-size:11.5px;color:rgba(244,238,229,.4);letter-spacing:.1em;margin-top:10px}
+
+.names{margin:34px auto 0;max-width:400px;text-align:left}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;letter-spacing:.16em;color:var(--paper-dim);margin-bottom:8px}
+.field input{
+  width:100%;padding:13px 15px;border-radius:10px;background:rgba(244,238,229,.05);
+  border:1px solid var(--line);color:var(--paper);font-size:15px;font-family:inherit;outline:none;transition:.2s;
+}
+.field input:focus{border-color:var(--amber);background:rgba(224,138,69,.06)}
+.field input::placeholder{color:rgba(244,238,229,.28)}
+.hint{font-size:12px;color:rgba(244,238,229,.42);margin-top:-4px}
+
+.meta-row{display:flex;gap:26px;justify-content:center;margin:30px 0 4px;flex-wrap:wrap}
+.meta-item{text-align:center}
+.meta-item b{display:block;font-family:var(--font-r);font-size:24px;color:var(--amber-soft);font-weight:600}
+.meta-item span{font-size:11px;color:rgba(244,238,229,.5);letter-spacing:.14em}
+
+/* ---------- 答题 ---------- */
+#quiz{padding-top:44px}
+.qhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.qhead .dim{font-size:11px;letter-spacing:.2em;color:var(--amber)}
+.qhead .idx{font-size:12px;color:rgba(244,238,229,.45);font-variant-numeric:tabular-nums}
+.bar{height:2px;background:rgba(244,238,229,.12);border-radius:2px;overflow:hidden;margin-bottom:30px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--amber-soft));transition:width .4s ease}
+.qcard{animation:slide .38s cubic-bezier(.2,.8,.3,1) both}
+@keyframes slide{from{opacity:0;transform:translateX(26px)}to{opacity:1;transform:none}}
+.qcard.back{animation:slideB .38s cubic-bezier(.2,.8,.3,1) both}
+@keyframes slideB{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+.qtext{font-family:var(--font-r);font-size:20.5px;line-height:1.75;margin-bottom:8px;letter-spacing:.02em}
+.qctx{font-size:13px;color:rgba(244,238,229,.45);margin-bottom:24px;line-height:1.8}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{
+  display:flex;gap:14px;align-items:flex-start;text-align:left;
+  padding:15px 17px;border-radius:12px;cursor:pointer;
+  background:rgba(244,238,229,.035);border:1px solid var(--line);
+  transition:.18s;font-family:inherit;font-size:14.5px;color:var(--paper);line-height:1.65;
+}
+.opt:hover{background:rgba(224,138,69,.09);border-color:rgba(224,138,69,.45);transform:translateX(3px)}
+.opt .k{
+  flex:0 0 22px;height:22px;border-radius:50%;border:1px solid rgba(244,238,229,.3);
+  font-size:11px;display:flex;align-items:center;justify-content:center;color:rgba(244,238,229,.6);
+  margin-top:2px;font-variant-numeric:tabular-nums;transition:.18s;
+}
+.opt:hover .k{border-color:var(--amber);color:var(--amber)}
+.opt.on{background:rgba(224,138,69,.16);border-color:var(--amber)}
+.opt.on .k{background:var(--amber);border-color:var(--amber);color:#231405}
+.qfoot{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.back-btn{background:none;border:none;color:rgba(244,238,229,.45);font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:.08em}
+.back-btn:hover{color:var(--amber)}
+.back-btn:disabled{opacity:.2;cursor:default}
+
+/* ---------- 结果 ---------- */
+#result{padding-top:34px}
+.ticket{
+  border-radius:16px;overflow:hidden;border:1px solid rgba(224,138,69,.35);
+  background:linear-gradient(160deg,rgba(224,138,69,.13),rgba(20,20,28,.9) 55%);
+  box-shadow:0 20px 50px -20px rgba(0,0,0,.7);
+}
+.tk-top{padding:26px 24px 22px;position:relative}
+.tk-top h2{font-family:var(--font-r);font-size:34px;letter-spacing:.06em;font-weight:600;line-height:1.3}
+.tk-top .en{font-size:10.5px;letter-spacing:.3em;color:rgba(244,238,229,.42);margin-top:6px}
+.tk-perf{position:relative;height:14px;margin:20px 0;border-top:1.5px dashed rgba(244,238,229,.22)}
+.tk-perf::before,.tk-perf::after{
+  content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:var(--ink);top:-8px;
+}
+.tk-perf::before{left:-32px}
+.tk-perf::after{right:-32px}
+.tk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px;padding:0 24px 24px}
+.tk-cell .lb{font-size:10px;letter-spacing:.2em;color:rgba(244,238,229,.4);margin-bottom:4px}
+.tk-cell .vl{font-family:var(--font-r);font-size:19px;letter-spacing:.03em}
+.tk-cell .vl.sm{font-size:15px;line-height:1.5}
+.tk-whole{grid-column:1/-1}
+.riders{display:flex;gap:9px;align-items:baseline;font-family:var(--font-r);font-size:19px;flex-wrap:wrap}
+.riders span{white-space:nowrap}
+.riders i{font-style:normal;color:var(--amber);font-size:13px;font-family:var(--font-s)}
+
+.verdict{
+  margin-top:26px;padding:22px 24px;border-radius:14px;
+  background:rgba(244,238,229,.045);border:1px solid var(--line);
+}
+.verdict .tag{
+  display:inline-block;font-size:10.5px;letter-spacing:.24em;color:var(--amber);
+  border:1px solid rgba(224,138,69,.4);padding:3px 10px;border-radius:999px;margin-bottom:12px;
+}
+.verdict p{font-size:14.5px;color:rgba(244,238,229,.82);line-height:1.95;margin-bottom:12px}
+.verdict p:last-child{margin-bottom:0}
+.verdict .quote{
+  font-family:var(--font-r);font-size:17px;color:var(--amber-soft);
+  border-left:2px solid var(--amber);padding-left:14px;margin:16px 0;line-height:1.8;
+}
+
+.sec{margin-top:34px}
+.sec-t{font-family:var(--font-r);font-size:19px;letter-spacing:.08em;margin-bottom:4px}
+.sec-s{font-size:11.5px;color:rgba(244,238,229,.42);letter-spacing:.12em;margin-bottom:18px}
+
+.radar-wrap{background:rgba(244,238,229,.03);border:1px solid var(--line);border-radius:14px;padding:16px}
+#radar{width:100%;height:auto;display:block}
+.rlg{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;justify-content:center}
+.rlg span{font-size:11px;color:rgba(244,238,229,.55);display:flex;align-items:center;gap:6px}
+.rlg i{width:9px;height:9px;border-radius:2px;display:inline-block}
+
+.dims{margin-top:26px;display:flex;flex-direction:column;gap:15px}
+.dim-row{background:rgba(244,238,229,.03);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.dim-row .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.dim-row .nm{font-size:14.5px;font-weight:600;letter-spacing:.05em}
+.dim-row .nm em{font-style:normal;font-size:11px;color:rgba(244,238,229,.4);font-weight:400;margin-left:7px;letter-spacing:.06em}
+.dim-row .sc{font-family:var(--font-r);font-size:14px;color:var(--amber-soft);font-variant-numeric:tabular-nums}
+.dim-row .track{height:3px;background:rgba(244,238,229,.1);border-radius:3px;overflow:hidden}
+.dim-row .track i{display:block;height:100%;background:var(--amber);width:0;transition:width 1s cubic-bezier(.2,.8,.3,1)}
+.dim-row .note{font-size:12.5px;color:rgba(244,238,229,.55);margin-top:9px;line-height:1.7}
+.dim-row.hi{border-color:rgba(224,138,69,.4);background:rgba(224,138,69,.07)}
+
+.acts{margin-top:26px}
+.acts ol{list-style:none;counter-reset:a;display:flex;flex-direction:column;gap:12px}
+.acts li{
+  counter-increment:a;position:relative;padding-left:36px;font-size:14px;
+  color:rgba(244,238,229,.8);line-height:1.85;
+}
+.acts li::before{
+  content:counter(a);position:absolute;left:0;top:2px;width:23px;height:23px;border-radius:50%;
+  border:1px solid rgba(224,138,69,.5);color:var(--amber);font-size:11px;
+  display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;
+}
+
+.cmp{margin-top:30px;padding:20px;border-radius:14px;background:rgba(139,124,180,.09);border:1px solid rgba(139,124,180,.32)}
+.cmp h4{font-family:var(--font-r);font-size:17px;margin-bottom:6px}
+.cmp .cs{font-size:11.5px;color:rgba(244,238,229,.45);margin-bottom:14px;letter-spacing:.1em}
+.paste{margin-top:16px;display:flex;flex-direction:column;gap:11px}
+.paste input{
+  width:100%;padding:13px 15px;border-radius:10px;background:rgba(244,238,229,.05);
+  border:1px solid var(--line);color:var(--paper);font-size:14px;font-family:inherit;outline:none;
+}
+.paste input:focus{border-color:var(--amber);background:rgba(224,138,69,.06)}
+.paste input::placeholder{color:rgba(244,238,229,.28)}
+.paste-act{display:flex;gap:16px;align-items:center}
+.cmp-diff{font-size:13.5px;line-height:1.85;color:rgba(244,238,229,.78);margin-top:14px}
+.cmp-diff b{color:var(--violet);font-weight:600}
+#radarCmp{width:100%;height:auto;display:block;margin-top:6px}
+
+.tail{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.disclaim{font-size:11px;color:rgba(244,238,229,.3);text-align:center;margin-top:22px;line-height:1.9}
+.toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);z-index:99;
+  background:rgba(244,238,229,.95);color:#1a1a1a;padding:11px 22px;border-radius:999px;
+  font-size:13px;opacity:0;transition:.3s;pointer-events:none;font-weight:500;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:420px){
+  .hero{font-size:34px}
+  .tk-top h2{font-size:28px}
+  #app{padding:0 16px 60px}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ========== 首屏 ========== -->
+  <section id="intro">
+    <div class="brand">I&nbsp;MISS&nbsp;YOU</div>
+    <h1 class="hero">后会<br><em>友</em>期</h1>
+    <div class="sub-hero">过期友情 · 深度测评</div>
+    <p class="lede">
+      有一趟开往高原的列车，全程十八天。<br>
+      有人在中途下车，因为话说开了；<br>
+      有人坐到终点，然后体面地告别。<br><br>
+      这一份测试，测的不是你们好不好，<br>
+      而是——<b>这段关系，卡在了哪里。</b>
+    </p>
+
+    <div class="poster">
+      <svg viewBox="0 0 430 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="高原列车与远山">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1B1A2C"/><stop offset="55%" stop-color="#3A2A32"/><stop offset="100%" stop-color="#6B4033"/>
+          </linearGradient>
+          <linearGradient id="far" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5B4A63"/><stop offset="100%" stop-color="#332F41"/>
+          </linearGradient>
+          <linearGradient id="near" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#241F2B"/><stop offset="100%" stop-color="#14121A"/>
+          </linearGradient>
+        </defs>
+        <rect width="430" height="200" fill="url(#sky)"/>
+        <circle cx="330" cy="62" r="21" fill="#E08A45" opacity=".82"/>
+        <circle cx="330" cy="62" r="42" fill="#E08A45" opacity=".12"/>
+        <path d="M0 118 L58 92 L104 112 L152 78 L200 108 L248 84 L300 114 L360 88 L430 116 L430 200 L0 200 Z" fill="url(#far)" opacity=".85"/>
+        <path d="M0 142 L70 124 L140 146 L215 120 L292 148 L368 126 L430 144 L430 200 L0 200 Z" fill="url(#near)"/>
+        <g stroke="#E08A45" stroke-width="1.2" opacity=".55">
+          <path d="M0 170 L430 170"/>
+          <path d="M0 176 L430 176" stroke-dasharray="9 7"/>
+        </g>
+        <g transform="translate(148,140)">
+          <rect x="0" y="0" width="46" height="20" rx="3" fill="#2C2630"/>
+          <rect x="46" y="-2" width="30" height="24" rx="3" fill="#332B38"/>
+          <rect x="76" y="0" width="46" height="20" rx="3" fill="#2C2630"/>
+          <rect x="6" y="4" width="12" height="7" rx="1.5" fill="#F0B77E" opacity=".9"/>
+          <rect x="22" y="4" width="12" height="7" rx="1.5" fill="#F0B77E" opacity=".9"/>
+          <rect x="52" y="3" width="14" height="8" rx="1.5" fill="#F0B77E" opacity=".75"/>
+          <rect x="82" y="4" width="12" height="7" rx="1.5" fill="#F0B77E" opacity=".55"/>
+          <rect x="98" y="4" width="12" height="7" rx="1.5" fill="#F0B77E" opacity=".35"/>
+          <circle cx="12" cy="21" r="2.6" fill="#8B7CB4"/><circle cx="38" cy="21" r="2.6" fill="#8B7CB4"/>
+          <circle cx="62" cy="23" r="2.6" fill="#8B7CB4"/><circle cx="88" cy="21" r="2.6" fill="#8B7CB4"/>
+          <circle cx="110" cy="21" r="2.6" fill="#8B7CB4"/>
+        </g>
+        <g opacity=".5" fill="#F4EEE5">
+          <circle cx="30" cy="30" r="1"/><circle cx="74" cy="52" r=".8"/><circle cx="122" cy="24" r=".9"/>
+          <circle cx="228" cy="40" r=".8"/><circle cx="286" cy="22" r="1"/><circle cx="392" cy="34" r=".8"/>
+          <circle cx="404" cy="66" r=".7"/><circle cx="52" cy="76" r=".7"/>
+        </g>
+      </svg>
+    </div>
+    <div class="caption">十八天 · 同一节车厢 · 不保证和解</div>
+
+    <div class="meta-row">
+      <div class="meta-item"><b>15</b><span>道情境题</span></div>
+      <div class="meta-item"><b>5</b><span>个维度</span></div>
+      <div class="meta-item"><b>4</b><span>种友情样本</span></div>
+      <div class="meta-item"><b>3</b><span>种下车方式</span></div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="names">
+      <div class="field">
+        <label>你 的 名 字</label>
+        <input id="myName" placeholder="怎么称呼你" maxlength="12">
+      </div>
+      <div class="field">
+        <label>那 位 旧 友</label>
+        <input id="taName" placeholder="填 Ta 的名字，结果会更有温度" maxlength="12">
+      </div>
+      <p class="hint">想的是谁，就填谁。可以是十几年前的那一个，也可以是上个月刚走散的那一个。</p>
+    </div>
+
+    <div style="margin-top:28px">
+      <button class="btn" id="startBtn">上 车</button>
+    </div>
+    <p class="disclaim" style="margin-top:20px">
+      本测试为自评式情境问卷，灵感来自友情纪实综艺《后会友期》<br>
+      结果仅供自我觉察与闲聊，不构成任何心理诊断或关系建议
+    </p>
+  </section>
+
+  <!-- ========== 答题 ========== -->
+  <section id="quiz" class="hidden">
+    <div class="qhead">
+      <div class="dim" id="dimLabel"></div>
+      <div class="idx"><span id="curIdx">1</span> / 15</div>
+    </div>
+    <div class="bar"><i id="barFill" style="width:6%"></i></div>
+    <div id="qCard" class="qcard">
+      <div class="qtext" id="qText"></div>
+      <div class="qctx" id="qCtx"></div>
+      <div class="opts" id="opts"></div>
+    </div>
+    <div class="qfoot">
+      <button class="back-btn" id="backBtn" disabled>← 上一题</button>
+      <div style="font-size:11px;color:rgba(244,238,229,.28);letter-spacing:.1em">凭第一直觉选</div>
+    </div>
+  </section>
+
+  <!-- ========== 结果 ========== -->
+  <section id="result" class="hidden">
+    <div class="ticket" id="ticket">
+      <div class="tk-top">
+        <div class="eyebrow" style="margin-bottom:10px" id="tkType"></div>
+        <h2 id="tkName"></h2>
+        <div class="en" id="tkEn"></div>
+      </div>
+      <div class="tk-perf"></div>
+      <div class="tk-grid">
+        <div class="tk-cell tk-whole">
+          <div class="lb">持 票 人</div>
+          <div class="vl riders" id="tkRiders"></div>
+        </div>
+        <div class="tk-cell tk-whole">
+          <div class="lb">终 点 站</div>
+          <div class="vl" id="tkEnd"></div>
+        </div>
+        <div class="tk-cell">
+          <div class="lb">核 心 症 结</div>
+          <div class="vl sm" id="tkCore"></div>
+        </div>
+        <div class="tk-cell">
+          <div class="lb">关 系 张 力</div>
+          <div class="vl" id="tkScore"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="verdict" id="verdict"></div>
+
+    <div class="sec">
+      <div class="sec-t">五 维 刻 度</div>
+      <div class="sec-s">每一格都是这段关系的一个切面</div>
+      <div class="radar-wrap"><canvas id="radar" width="620" height="520"></canvas></div>
+      <div class="dims" id="dimList"></div>
+    </div>
+
+    <div class="sec acts">
+      <div class="sec-t">下 车 前 可 以 做 的 事</div>
+      <div class="sec-s" id="actsSub"></div>
+      <ol id="actsList"></ol>
+    </div>
+
+    <div id="cmpBox" class="cmp hidden">
+      <h4 id="cmpTitle"></h4>
+      <div class="cs" id="cmpSub"></div>
+      <canvas id="radarCmp" width="620" height="520"></canvas>
+      <div class="cmp-diff" id="cmpDiff"></div>
+    </div>
+
+    <div class="tail">
+      <button class="btn" id="shareBtn">生成结果卡片</button>
+      <button class="btn ghost" id="inviteBtn">邀请 Ta 也测一次</button>
+      <button class="btn ghost sm" id="codeBtn">复制我的答案码</button>
+      <button class="btn ghost sm" id="pasteBtn">粘贴 Ta 的答案码</button>
+      <button class="btn ghost sm" id="againBtn">重新测一遍</button>
+    </div>
+    <div id="pasteBox" class="paste hidden">
+      <input id="codeInput" placeholder="把 Ta 发来的答案码粘在这里" autocomplete="off" spellcheck="false">
+      <div class="paste-act">
+        <button class="btn sm" id="codeOk">对 账</button>
+        <button class="back-btn" id="codeCancel">取消</button>
+      </div>
+    </div>
+    <p class="disclaim" id="howto"></p>
+    <p class="disclaim">
+      感受会变，答案也会变 · 隔半年再测一次，看看你们走到了哪一站
+    </p>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   后会友期 · 过期友情深度测评
+   五维模型：信任存量 / 边界弹性 / 唯一执念 / 分歧耐受 / 修复阻力
+   ============================================================ */
+
+const DIMS = [
+  {key:'trust', name:'信任存量', tag:'厉娜 · 许飞', axis:'信任', desc:'被伤过一次之后，还能不能信'},
+  {key:'bound', name:'边界弹性', tag:'马天宇 · 张萌', axis:'边界', desc:'靠太近会烫，离太远会凉'},
+  {key:'only',  name:'唯一执念', tag:'文吉儿 · 王子璇', axis:'唯一', desc:'我是不是你最好的那一个'},
+  {key:'diff',  name:'分歧耐受', tag:'青稚 · 白小纯', axis:'分歧', desc:'我们只是不再同路'},
+  {key:'resist',name:'修复阻力', tag:'共同课题', axis:'阻力', desc:'还有没有力气再谈一次'}
+];
+
+const QUESTIONS = [
+  /* ---- 信任存量 ---- */
+  {dim:'trust', ctx:'关于那件让你们之间变味的事',
+   t:'那件事，你们现在的状态是？',
+   o:[['摊开讲过，虽然疼，但说清楚了',1],
+      ['提过，对方解释或道过歉，但你没完全接受',2],
+      ['提过一次，最后不欢而散',3],
+      ['谁都没再提，各自心里都有一个版本',4]]},
+  {dim:'trust', ctx:'假设有人在背后说了 Ta 的坏话',
+   t:'你的第一反应更接近哪一句？',
+   o:[['不太可能，我替 Ta 说话',1],
+      ['不太信，但会找 Ta 本人确认',2],
+      ['先听着，心里默默记下',3],
+      ['果然是这样',4]]},
+  {dim:'trust', ctx:'回忆一下当时的细节',
+   t:'那些细节，你现在还记得多少？',
+   o:[['已经模糊了，只剩一个影子',1],
+      ['记得大概，但情绪已经淡了',2],
+      ['记得清楚，情绪也还在',3],
+      ['每一个细节都记得，连那天的天气都记得',4]]},
+
+  /* ---- 边界弹性 ---- */
+  {dim:'bound', ctx:'Ta 突然半夜打来电话，说心情不好',
+   t:'你更可能是哪一种？',
+   o:[['很自然地接起，聊到 Ta 好一点',1],
+      ['会接，但心里有一点负担',2],
+      ['接了，但整晚都在想什么时候能挂',3],
+      ['烦躁，觉得自己的时间被入侵了',4]]},
+  {dim:'bound', ctx:'回想这段关系里你更常有的感觉',
+   t:'哪一种更像你？',
+   o:[['松紧自如，很舒服',1],
+      ['大体舒服，需要空间时说了对方也懂',2],
+      ['有时觉得窒息，有时觉得被忽略，拿不准',3],
+      ['被裹挟，Ta 想要的我给不了',4]]},
+  {dim:'bound', ctx:'联系频率这件事',
+   t:'你们现在的联系，和彼此的期待？',
+   o:[['刚好，双方都很自在',1],
+      ['差不多，偶尔对不上',2],
+      ['有点错位，但还能将就',3],
+      ['差很远，一个嫌太少一个嫌太多',4]]},
+
+  /* ---- 唯一执念 ---- */
+  {dim:'only', ctx:'刷到 Ta 和别人玩得很好的照片',
+   t:'你心里冒出来的是？',
+   o:[['真好，Ta 开心就好',1],
+      ['没什么感觉',2],
+      ['有点酸，但不会说',3],
+      ['难受，觉得自己被替代了',4]]},
+  {dim:'only', ctx:'诚实地问自己',
+   t:'"我应该是 Ta 最好的朋友"这个念头？',
+   o:[['从来没有过',1],
+      ['曾经有，现在已经放下了',2],
+      ['有过，现在淡了一些',3],
+      ['一直有，做不到会难过很久',4]]},
+  {dim:'only', ctx:'如果 Ta 亲口说"我们现在只是普通朋友"',
+   t:'你会？',
+   o:[['觉得正常，关系本来就会变',1],
+      ['接受，虽然有一点点空',2],
+      ['有点失落，但能理解',3],
+      ['觉得被降级，很难接受',4]]},
+
+  /* ---- 分歧耐受 ---- */
+  {dim:'diff', ctx:'某件事上，你们的观点完全相反',
+   t:'通常会怎么收场？',
+   o:[['聊开来，能求同存异',1],
+      ['聊，但会各自保留',2],
+      ['绕开这个话题，以后都不再提',3],
+      ['吵起来，谁也说服不了谁，最后冷战',4]]},
+  {dim:'diff', ctx:'工作、城市、生活节奏',
+   t:'你们现在的步调？',
+   o:[['不同但互补，互相好奇',1],
+      ['有差异，但还能聊到一块去',2],
+      ['差得有点远，聊天基本靠回忆撑着',3],
+      ['完全不同步，几乎找不到共同话题',4]]},
+  {dim:'diff', ctx:'看着现在的 Ta',
+   t:'有没有过"Ta 变成了我不认识的人"这个感觉？',
+   o:[['没有，变化很自然',1],
+      ['有一点，但那是 Ta 的自由',2],
+      ['有，但一直没说出口',3],
+      ['有，而且我不喜欢现在的 Ta',4]]},
+
+  /* ---- 修复阻力 ---- */
+  {dim:'resist', ctx:'现在，让你主动联系 Ta',
+   t:'你会？',
+   o:[['会，很自然，本来就该联系',1],
+      ['会，但要攒一点勇气',2],
+      ['不太想，除非有个正当理由',3],
+      ['完全不会',4]]},
+  {dim:'resist', ctx:'想象和 Ta 坐下来，把那件事聊清楚',
+   t:'你的真实想法是？',
+   o:[['我想过很多次，一直等着这一天',1],
+      ['想，但怕聊崩了更糟',2],
+      ['不太想，光是想象就尴尬',3],
+      ['不需要，这件事已经结束了',4]]},
+  {dim:'resist', ctx:'如果明天 Ta 先开口："我们聊聊吧"',
+   t:'你会？',
+   o:[['很高兴，马上答应',1],
+      ['答应，但心里有防备',2],
+      ['先拖着，说改天吧',3],
+      ['不回应',4]]}
+];
+
+/* ---------- 四种友情样本 ---------- */
+const TYPES = {
+  trust:{
+    name:'悬崖小屋', en:'THE UNFINISHED STORY', ref:'厉娜 · 许飞',
+    core:'一句没说出口的话',
+    quote:'不原谅，也不理解。但那件事，我记了十几年。',
+    desc:'你们之间横着一个<b>没有被共同确认过的版本</b>。同一件事，你有一个版本，Ta 有另一个版本，两个版本从来没有对过账。于是伤口不是被撕开的，是被各自保存起来的——保存得越久，越像真相。',
+    more:'这类关系最痛的地方在于：伤害可能是真的，但"故意"未必是真的。而你们谁都没有机会去验证这一点。恨，成了唯一还能连接你们的东西。',
+    acts:[
+      '把"Ta 一定是故意的"这句话，先放进括号里存三天。不是原谅，是暂停宣判。',
+      '如果要谈，别从"你当年为什么"开始。从"我当时是这样理解的"开始。前者是审问，后者是陈述。',
+      '允许结局是"我们讲清楚了，但还是走不到一起"。摊开不等于必须和好。'
+    ]
+  },
+  bound:{
+    name:'并行轨道', en:'TWO PARALLEL LINES', ref:'马天宇 · 张萌',
+    core:'亲密的定义不一样',
+    quote:'我以为朋友就是随叫随到，你觉得朋友应该保持距离。',
+    desc:'你们对"好朋友该是什么样"的定义，从一开始就不是一个版本。一个人把亲密理解成<b>随时可及</b>，另一个人把亲密理解成<b>互不越界</b>。谁都没错，但每一次靠近都会被读成冒犯，每一次退后都会被读成冷落。',
+    more:'这类关系通常不是被某件大事毁掉的，是被几十次小事磨掉的：一次没回的消息、一次被拒绝的邀约、一句脱口而出的气话。',
+    acts:[
+      '把"你为什么不回我"换成"我需要你回我，这对我很重要"。前者是指控，后者是需求。',
+      '明确说出你的距离刻度，而不是让对方猜。比如"我需要在晚上十点后不被打扰"。',
+      '接受一件小事：你们永远不会是同一种亲密。能对齐 70%，就已经是很好的朋友了。'
+    ]
+  },
+  only:{
+    name:'唯一编号', en:'THE ONLY ONE', ref:'文吉儿 · 王子璇',
+    core:'把对方设成了置顶',
+    quote:'我希望我是你赶不走的那一个。',
+    desc:'你在这段关系里投入的不只是喜欢，还有<b>身份</b>。你是"Ta 最好的朋友"，这个位置一旦松动，动摇的不只是关系，还有你自己的一部分。所以当 Ta 的世界变大，你感觉到的不是被分享，而是被降级。',
+    more:'真正让这类关系走散的，往往不是第三方，而是人生节奏的错位：一个人还在原地等，另一个人已经走到下一站。执念本身没有错，错的是它被当成了关系的唯一支撑。',
+    acts:[
+      '问自己一个问题：如果 Ta 有十个很好的朋友，我还是不是其中重要的那一个？如果答案是"是"，那你就没有被降级。',
+      '把"我是不是你最好的朋友"这个念头，换成"我在这段关系里开不开心"。前者是关于排名，后者是关于感受。',
+      '允许自己也为这段关系之外的生活投入。唯一性会压垮关系，也会压垮你自己。'
+    ]
+  },
+  diff:{
+    name:'分岔路口', en:'THE FORK', ref:'青稚 · 白小纯',
+    core:'我们只是不再同路',
+    quote:'不是谁做错了什么，是我们想去的地方不一样了。',
+    desc:'你们没有撕破脸，也没有什么深仇大恨，只是<b>共同语境消失了</b>。曾经你们靠一件事紧紧绑在一起——一个战队、一个行业、一段学校、一个圈子。那件事结束后，你们之间就只剩回忆可以聊，而回忆是会被聊完的。',
+    more:'这类关系最难的地方在于：它没有敌人，没有背叛，甚至没有一个可以指责的对象。你没法生气，只能遗憾。于是它常常不是结束，而是慢慢不再开始。',
+    acts:[
+      '承认一件事：不是所有走散都需要被修复。有些友情的功能就是陪你走过某一段，它已经完成了。',
+      '如果想留，就去找一个新的共同语境，而不是反复翻炒旧的那个。一起做一件你们都没做过的事。',
+      '把"我们应该还是好朋友"的压力卸掉。降级不是失败，是关系的正常代谢。'
+    ]
+  },
+  calm:{
+    name:'高原晚风', en:'STILL RIDING', ref:'——',
+    core:'没什么大不了的结',
+    quote:'我们还在这趟车上，而且座位挨着。',
+    desc:'测下来，你们这段关系没有明显的死结。信任、边界、期待、分歧这几件事上都还算松弛，也没有那种"非得怎样不可"的执念。偶尔会淡，偶尔会忙，但都不构成问题。',
+    more:'不过要留意：这种健康往往是因为你们<b>很久没有真正被考验过</b>。没有冲突的关系，有时候只是还没有遇到冲突。',
+    acts:[
+      '别等到有事才联系。没有理由的消息，才是友情的日常维护。',
+      '趁现在关系松弛，把一些"万一以后"的话提前说清楚：比如钱、比如边界、比如彼此的底线。',
+      '记得这段关系的样子。十年后如果它变了，你能想起它曾经很好——这本身就是一种修复的资源。'
+    ]
+  }
+};
+
+/* ---------- 三种下车方式 ---------- */
+const ENDS = {
+  together:{
+    name:'提 前 下 车', en:'GET OFF TOGETHER', cls:'同行',
+    line:'还有话想说，还有力气说。这段关系具备被修复的条件。',
+    tip:'别等"合适的时机"。对过期友情来说，时机永远不会自己变合适，只有你开了口它才开始存在。'
+  },
+  pending:{
+    name:'再 坐 几 站', en:'A FEW MORE STOPS', cls:'未定',
+    line:'不痛不痒，也不冷不热。你们卡在一种"就这样吧"的中间状态里。',
+    tip:'中间状态最消耗人，因为它既没有结束的解脱，也没有修复的投入。给它一个期限，比让它悬着更善意。'
+  },
+  farewell:{
+    name:'坐 到 终 点', en:'TILL THE LAST STOP', cls:'告别',
+    line:'心结很深，而且你已经不太想再为它花力气了。',
+    tip:'体面地告别也是一种完成。不和解不代表你输了，它只是代表你们都不再愿意为这件事付出代价。'
+  }
+};
+
+/* ---------- 状态 ---------- */
+const S = {i:0, ans:new Array(15).fill(null), back:false, locked:false, my:'', ta:''};
+const $ = id => document.getElementById(id);
+
+function start(){
+  S.my = $('myName').value.trim() || '你';
+  S.ta = $('taName').value.trim() || '那位旧友';
+  $('intro').classList.add('hidden');
+  $('quiz').classList.remove('hidden');
+  render();
+}
+function render(){
+  const q = QUESTIONS[S.i], d = DIMS.find(x=>x.key===q.dim);
+  $('dimLabel').textContent = d.name + ' · ' + d.desc;
+  $('curIdx').textContent = S.i + 1;
+  $('barFill').style.width = ((S.i+1)/QUESTIONS.length*100) + '%';
+  const card = $('qCard');
+  card.classList.remove('qcard', 'back'); void card.offsetWidth;
+  card.classList.add('qcard');
+  if(S.back) card.classList.add('back');
+  $('qText').textContent = q.t;
+  $('qCtx').textContent = q.ctx;
+  const box = $('opts'); box.innerHTML = '';
+  q.o.forEach((opt, k)=>{
+    const b = document.createElement('button');
+    b.className = 'opt' + (S.ans[S.i]===k ? ' on' : '');
+    b.innerHTML = '<span class="k">'+(k+1)+'</span><span>'+opt[0]+'</span>';
+    b.onclick = ()=>pick(k);
+    box.appendChild(b);
+  });
+  $('backBtn').disabled = S.i===0;
+  S.back = false;
+}
+function pick(k){
+  // 切换动画的 240ms 窗口内允许改答案，但不再排队跳题
+  // 否则连点/双击会一次跳多题，答案没填满就触发计分，结果页会崩
+  S.ans[S.i] = k;
+  [...$('opts').children].forEach((el,i)=>el.classList.toggle('on', i===k));
+  if(S.locked) return;
+  S.locked = true;
+  setTimeout(()=>{
+    S.locked = false;
+    if(S.i < QUESTIONS.length-1){ S.i++; render(); }
+    else finish();
+  }, 240);
+}
+function back(){
+  if(S.locked) return;
+  if(S.i>0){ S.i--; S.back=true; render(); }
+}
+
+/* ---------- 计分 ---------- */
+function score(){
+  const r = {}; DIMS.forEach(d=>r[d.key]=0);
+  QUESTIONS.forEach((q,i)=>{
+    const a = S.ans[i];
+    r[q.dim] += (a==null || !q.o[a]) ? 2 : q.o[a][1];   // 兜底，避免读到空值直接崩
+  });
+  r.total = DIMS.reduce((s,d)=>s+r[d.key],0);
+  return r;
+}
+function outcome(r){
+  // 主类型：取四个议题维度中张力最高的（≥9 才成立）；若都很低 → calm
+  const key = ['trust','bound','only','diff'].reduce((a,b)=> r[b] > r[a] ? b : a);
+  const type = r[key] >= 9 ? key : 'calm';
+  // 终点：由总张力 + 修复阻力共同决定
+  // 又不想动、关系又紧绷 → 告别；愿意动、或本来就不严重 → 同行
+  let end;
+  if(r.resist >= 8 && r.total >= 38) end = 'farewell';
+  else if(r.resist <= 6 || r.total <= 28) end = 'together';
+  else end = 'pending';
+  return {type, end, top:key};
+}
+
+/* ---------- 结果渲染 ---------- */
+function finish(){
+  const miss = S.ans.indexOf(null);
+  if(miss >= 0){                       // 有漏答就退回去补，不硬算出结果
+    S.locked = false; S.i = miss; S.back = true; render();
+    toast('第 ' + (miss+1) + ' 题还没选，回去补一下');
+    return;
+  }
+  const r = score(), o = outcome(r), T = TYPES[o.type], E = ENDS[o.end];
+  $('quiz').classList.add('hidden');
+  $('result').classList.remove('hidden');
+  $('result').classList.add('fade');
+
+  $('tkType').textContent = '友情样本 · ' + T.ref;
+  $('tkName').innerHTML = T.name;
+  $('tkEn').textContent = T.en;
+  $('tkRiders').innerHTML = '<span>' + esc(S.my) + '</span><i>×</i><span>' + esc(S.ta) + '</span>';
+  $('tkEnd').textContent = E.name + '（' + E.cls + '）';
+  $('tkCore').textContent = T.core;
+  $('tkScore').textContent = r.total + ' / 60';
+
+  $('verdict').innerHTML =
+    '<span class="tag">终 点 判 定 · ' + E.cls + '</span>' +
+    '<p>' + E.line + '</p>' +
+    '<div class="quote">' + T.quote + '</div>' +
+    '<p>' + T.desc + '</p>' +
+    '<p style="color:rgba(244,238,229,.6)">' + T.more + '</p>' +
+    '<p style="margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px">' +
+      '<b style="color:var(--amber)">' + E.tip + '</b></p>';
+
+  // 维度列表
+  const list = $('dimList'); list.innerHTML = '';
+  DIMS.forEach(d=>{
+    const v = r[d.key], pct = (v-3)/9*100;
+    const div = document.createElement('div');
+    div.className = 'dim-row' + (d.key===o.top && o.type!=='calm' ? ' hi' : '');
+    div.innerHTML =
+      '<div class="top"><div class="nm">'+d.name+'<em>'+d.tag+'</em></div>'+
+      '<div class="sc">'+v+' / 12</div></div>'+
+      '<div class="track"><i data-w="'+pct+'"></i></div>'+
+      '<div class="note">'+dimNote(d.key, v)+'</div>';
+    list.appendChild(div);
+  });
+  requestAnimationFrame(()=>list.querySelectorAll('.track i').forEach(i=>i.style.width=i.dataset.w+'%'));
+
+  // 建议
+  $('actsSub').textContent = '给' + S.my + '与' + S.ta + '的三张便签';
+  $('actsList').innerHTML = T.acts.map(a=>'<li>'+a+'</li>').join('');
+
+  drawRadar($('radar'), [r], [S.my]);
+  handleCmp(r);
+  $('howto').textContent = location.protocol === 'file:'
+    ? '离线版也能双人对测 · 复制你的答案码发给 Ta，让 Ta 测完粘贴进来，两边就能对上账'
+    : '想让 Ta 也测一次，复制链接或者答案码都行，Ta 测完你们的结果会叠在一起';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function dimNote(k, v){
+  const lv = v<=5 ? 'low' : v<=8 ? 'mid' : 'high';
+  const M = {
+    trust:{low:'信任的底子还在，那件事没有彻底改写你们。',mid:'有裂痕，但还没塌。取决于有没有人愿意先开口。',high:'信任被击穿过，而且至今没有共同确认的版本。'},
+    bound:{low:'你们的松紧度是对的，彼此都舒服。',mid:'偶尔错位，但还在能调和的范围内。',high:'你们对"亲密"的定义根本不是同一个，靠近和退后都会被误读。'},
+    only:{low:'你没有把关系绑在唯一性上，这很轻松。',mid:'有过执念，现在已经松了一些。',high:'你把"最好的朋友"当成了自己的位置，它一松动你就跟着晃。'},
+    diff:{low:'你们能容得下不一样。',mid:'有分歧，但还能绕着走。',high:'共同语境正在消失，你们只剩下回忆可聊。'},
+    resist:{low:'你还愿意走向 Ta，这是最稀缺的东西。',mid:'想，但怕。犹豫本身就是一种在乎。',high:'你已经不太想再为这件事花力气了。'}
+  };
+  return M[k][lv];
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ---------- 雷达图 ---------- */
+function drawRadar(cv, sets, names){
+  const ctx = cv.getContext('2d'), W = cv.width, H = cv.height;
+  const cx = W/2, cy = H/2 + 6, R = Math.min(W,H)*0.33;
+  const N = DIMS.length, A = -Math.PI/2;
+  const colors = ['#E08A45','#8B7CB4'];
+  ctx.clearRect(0,0,W,H);
+
+  // 网格
+  for(let g=1; g<=4; g++){
+    const rr = R*g/4;
+    ctx.beginPath();
+    for(let i=0;i<N;i++){
+      const a = A + i*2*Math.PI/N, x = cx+Math.cos(a)*rr, y = cy+Math.sin(a)*rr;
+      i ? ctx.lineTo(x,y) : ctx.moveTo(x,y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(244,238,229,'+(g===4?0.22:0.09)+')';
+    ctx.lineWidth = g===4 ? 1.6 : 1; ctx.stroke();
+  }
+  // 轴线
+  for(let i=0;i<N;i++){
+    const a = A + i*2*Math.PI/N;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(a)*R, cy+Math.sin(a)*R);
+    ctx.strokeStyle = 'rgba(244,238,229,.11)'; ctx.lineWidth = 1; ctx.stroke();
+  }
+  // 数据
+  sets.forEach((r,s)=>{
+    const col = colors[s] || colors[0];
+    ctx.beginPath();
+    DIMS.forEach((d,i)=>{
+      const v = Math.max(0, (r[d.key]-3)/9);
+      const a = A + i*2*Math.PI/N, x = cx+Math.cos(a)*R*v, y = cy+Math.sin(a)*R*v;
+      i ? ctx.lineTo(x,y) : ctx.moveTo(x,y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = col + (sets.length>1 ? '2E' : '42');
+    ctx.fill();
+    ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.stroke();
+    DIMS.forEach((d,i)=>{
+      const v = Math.max(0, (r[d.key]-3)/9);
+      const a = A + i*2*Math.PI/N, x = cx+Math.cos(a)*R*v, y = cy+Math.sin(a)*R*v;
+      ctx.beginPath(); ctx.arc(x,y,3.6,0,7); ctx.fillStyle = col; ctx.fill();
+    });
+  });
+  // 标签
+  ctx.font = '600 20px "PingFang SC","Noto Sans SC",sans-serif';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  DIMS.forEach((d,i)=>{
+    const a = A + i*2*Math.PI/N, x = cx+Math.cos(a)*(R+34), y = cy+Math.sin(a)*(R+30);
+    ctx.fillStyle = 'rgba(244,238,229,.8)'; ctx.fillText(d.axis, x, y);
+  });
+  // 图例
+  if(names && names.length){
+    ctx.font = '18px "PingFang SC","Noto Sans SC",sans-serif';
+    ctx.textAlign = 'left';
+    names.forEach((n,s)=>{
+      const y = 22 + s*24;
+      ctx.fillStyle = colors[s] || colors[0];
+      ctx.fillRect(16, y-6, 12, 12);
+      ctx.fillStyle = 'rgba(244,238,229,.75)';
+      ctx.fillText(n, 36, y+2);
+    });
+  }
+}
+
+/* ---------- 双人对照（链接 / 答案码两种方式） ---------- */
+const CODE_PREFIX = 'HYQ';
+let manualCmp = null;                      // 离线时手动粘贴进来的对方答案
+/* 页面被嵌在框架里时（资料库等托管），URL 尾部的参数进不到 iframe 内部，
+   这里尝试向上一层读取；跨域读不到就返回空，由调用方降级到答案码 */
+function hostHash(){
+  let h = location.hash || '';
+  if(!h && window.self !== window.top){
+    try{ h = window.top.location.hash || ''; }catch(e){ h = ''; }
+  }
+  return h;
+}
+function hostHref(){
+  if(location.protocol === 'file:') return null;
+  if(window.self !== window.top){
+    try{ return window.top.location.href; }catch(e){ return null; }
+  }
+  return location.href;
+}
+function myCode(){
+  const r = score();
+  return CODE_PREFIX + '|' + String(S.my).replace(/\|/g,'') + '|' + DIMS.map(d=>r[d.key]).join('-');
+}
+function parseCode(txt){
+  const p = String(txt || '').trim().split('|');
+  if(p.length < 3 || p[0] !== CODE_PREFIX) return null;
+  const vals = p[2].split('-').map(Number);
+  if(vals.length !== 5 || vals.some(v=>isNaN(v) || v<3 || v>12)) return null;
+  return {name: p[1] || 'Ta', vals: vals};
+}
+function handleCmp(mine){
+  const h = new URLSearchParams(hostHash().replace(/^#/, ''));
+  const c = h.get('c'), cn = h.get('cn');
+  if(c && applyCmp(mine, c.split('-').map(Number), cn)) return;
+  if(manualCmp && applyCmp(mine, manualCmp.vals, manualCmp.name)) return;
+  $('cmpBox').classList.add('hidden');
+}
+function applyCmp(mine, vals, name){
+  if(!vals || vals.length !== 5 || vals.some(v=>isNaN(v) || v<3 || v>12)) return false;
+  const theirs = {}; DIMS.forEach((d,i)=>theirs[d.key]=vals[i]);
+  theirs.total = vals.reduce((a,b)=>a+b,0);
+  const oc = outcome(theirs);
+  $('cmpBox').classList.remove('hidden');
+  $('cmpTitle').textContent = '两 个 视 角';
+  const who = name || 'Ta';
+  $('cmpSub').textContent = esc(who) + ' 先测了一次，你们看到的是同一段关系吗';
+  drawRadar($('radarCmp'), [mine, theirs], [S.my, who]);
+  const gaps = DIMS.map(d=>({d, g: Math.abs(mine[d.key]-theirs[d.key]), a:mine[d.key], b:theirs[d.key]}))
+                   .sort((x,y)=>y.g-x.g);
+  const top = gaps[0];
+  const T2 = TYPES[oc.type], E2 = ENDS[oc.end];
+  $('cmpDiff').innerHTML =
+    '<b>差异最大的一维是「' + top.d.name + '」</b>：你这边是 ' + top.a + ' 分，' + esc(who) + ' 那边是 ' + top.b + ' 分。' +
+    (top.g>=4
+      ? '差 ' + top.g + ' 分，说明你们对同一件事的感受明显不同步——这往往不是谁在说谎，而是你们各自记住的是不同的瞬间。值得先聊这一维，而不是聊"那件事"。'
+      : '只差 ' + top.g + ' 分，你们对这段关系的感受其实相当接近。这说明问题可能不在"理解不同"，而在"都不肯先动"。') +
+    '<br><br>' + esc(who) + ' 的结果是：<b>' + T2.name + '（' + E2.cls + '）</b>，' + T2.core + '。';
+  return true;
+}
+
+/* ---------- 分享 ---------- */
+function invite(){
+  const base = hostHref();                 // 离线 / 嵌在跨域框架里拿不到可用链接 → 改用答案码
+  if(!base){
+    copy(myCode(), '答案码已复制，微信发给 ' + S.ta + '，让 Ta 粘贴进自己的测试里就能对账');
+    return;
+  }
+  const r = score();
+  const code = DIMS.map(d=>r[d.key]).join('-');
+  const u = new URL(base);
+  u.hash = 'c=' + code + '&cn=' + encodeURIComponent(S.my);
+  copy(u.toString(), '链接已复制，发给 ' + S.ta + ' 吧 —— Ta 测完会看到你们两人的对照');
+}
+function shareCard(){
+  const r = score(), o = outcome(r), T = TYPES[o.type], E = ENDS[o.end];
+  const W = 750, H = 1180, cv = document.createElement('canvas');
+  cv.width = W; cv.height = H;
+  const c = cv.getContext('2d');
+  const g = c.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#141320'); g.addColorStop(.5,'#1B1724'); g.addColorStop(1,'#0E0F16');
+  c.fillStyle = g; c.fillRect(0,0,W,H);
+  const sun = c.createRadialGradient(W*.78,190,10,W*.78,190,220);
+  sun.addColorStop(0,'rgba(224,138,69,.5)'); sun.addColorStop(1,'rgba(224,138,69,0)');
+  c.fillStyle = sun; c.fillRect(0,0,W,H*.5);
+  // 远山
+  c.fillStyle = 'rgba(139,124,180,.16)';
+  c.beginPath(); c.moveTo(0,430);
+  [[90,360],[190,410],[290,340],[400,400],[510,352],[620,405],[750,366]].forEach(p=>c.lineTo(p[0],p[1]));
+  c.lineTo(750,1180); c.lineTo(0,1180); c.closePath(); c.fill();
+  c.fillStyle = '#0C0D13';
+  c.beginPath(); c.moveTo(0,470);
+  [[120,440],[250,478],[380,436],[520,480],[660,442],[750,470]].forEach(p=>c.lineTo(p[0],p[1]));
+  c.lineTo(750,1180); c.lineTo(0,1180); c.closePath(); c.fill();
+  // 铁轨
+  c.strokeStyle = 'rgba(224,138,69,.4)'; c.lineWidth = 2;
+  [508,520].forEach(y=>{ c.beginPath(); c.moveTo(40,y); c.lineTo(W-40,y); c.stroke(); });
+  c.setLineDash([14,12]); c.strokeStyle = 'rgba(244,238,229,.18)';
+  c.beginPath(); c.moveTo(40,532); c.lineTo(W-40,532); c.stroke(); c.setLineDash([]);
+
+  c.textAlign = 'center';
+  c.fillStyle = 'rgba(224,138,69,.9)';
+  c.font = '600 22px sans-serif';
+  c.fillText('I  M I S S  Y O U', W/2, 96);
+  c.fillStyle = '#F4EEE5';
+  c.font = '600 78px "Songti SC","Noto Serif SC",serif';
+  c.fillText('后 会 友 期', W/2, 190);
+  c.fillStyle = 'rgba(244,238,229,.45)';
+  c.font = '24px sans-serif';
+  c.fillText('过 期 友 情 · 深 度 测 评', W/2, 234);
+
+  c.textAlign = 'left';
+  c.fillStyle = 'rgba(224,138,69,.9)'; c.font = '22px sans-serif';
+  c.fillText('友 情 样 本', 62, 620);
+  c.fillStyle = '#F4EEE5'; c.font = '600 58px "Songti SC","Noto Serif SC",serif';
+  c.fillText(T.name, 62, 682);
+  c.fillStyle = 'rgba(244,238,229,.5)'; c.font = '22px sans-serif';
+  c.fillText(T.ref + '  ·  ' + T.en, 62, 722);
+
+  c.fillStyle = 'rgba(244,238,229,.7)'; c.font = '30px sans-serif';
+  wrap(c, '「' + T.quote + '」', 62, 790, W-124, 44);
+
+  c.fillStyle = 'rgba(244,238,229,.4)'; c.font = '22px sans-serif';
+  c.fillText('终 点 站', 62, 900);
+  c.fillStyle = '#E08A45'; c.font = '600 40px "Songti SC",serif';
+  c.fillText(E.name + '（' + E.cls + '）', 62, 948);
+
+  c.fillStyle = 'rgba(244,238,229,.4)'; c.font = '22px sans-serif';
+  c.fillText('持 票 人', 62, 1010);
+  c.fillStyle = '#F4EEE5'; c.font = '34px "Songti SC",serif';
+  c.fillText(S.my + '  ×  ' + S.ta, 62, 1058);
+
+  c.textAlign = 'center';
+  c.fillStyle = 'rgba(244,238,229,.3)'; c.font = '20px sans-serif';
+  c.fillText('关系张力 ' + r.total + ' / 60     ·     摘自《后会友期》友情样本测评', W/2, 1128);
+
+  const url = cv.toDataURL('image/png');
+  // iOS Safari 不认 a.download，改成新窗口打开让用户长按存相册
+  const isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if(isIOS){
+    const w = window.open();
+    if(w){
+      w.document.write('<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1">' +
+        '<title>长按保存到相册</title></head><body style="margin:0;background:#111">' +
+        '<img src="' + url + '" style="width:100%;display:block"></body></html>');
+      w.document.close();
+      toast('已打开，长按图片存到相册');
+    } else toast('弹窗被拦了，允许弹窗再点一次，或者直接截屏');
+    return;
+  }
+  const a = document.createElement('a');
+  a.href = url; a.download = '后会友期·' + S.my + '×' + S.ta + '.png';
+  document.body.appendChild(a); a.click(); a.remove();
+  toast('结果卡片已保存到本地');
+}
+function wrap(c, text, x, y, maxW, lh){
+  let line = '', yy = y;
+  for(const ch of text){
+    if(c.measureText(line + ch).width > maxW && line){ c.fillText(line, x, yy); line = ch; yy += lh; }
+    else line += ch;
+  }
+  c.fillText(line, x, yy);
+}
+function copy(text, msg){
+  const done = ()=>toast(msg);
+  const inFrame = (window.self !== window.top);   // 嵌在框架里时剪贴板会被权限策略拦下，直接走兜底
+  if(!inFrame && navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallback(text, done));
+  } else fallback(text, done);
+}
+function fallback(text, done){
+  const t = document.createElement('textarea');
+  t.value = text; t.style.position = 'fixed'; t.style.opacity = '0';
+  document.body.appendChild(t); t.select();
+  let ok = false;
+  try{ ok = document.execCommand('copy'); }catch(e){ ok = false; }
+  t.remove();
+  if(ok) done(); else manualCopy(text, done);
+}
+/* 自动复制被浏览器拦住时，给出可手动选中的浮层，保证一定拿得到内容 */
+function manualCopy(text, done){
+  let box = $('copyBox');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'copyBox';
+    box.style.cssText = 'position:fixed;inset:0;z-index:99;background:rgba(8,8,12,.88);display:flex;align-items:center;justify-content:center;padding:24px';
+    box.innerHTML =
+      '<div style="width:100%;max-width:420px;background:#1B1724;border:1px solid rgba(224,138,69,.35);border-radius:14px;padding:20px">' +
+      '<div style="font-size:13px;color:#E08A45;letter-spacing:.1em;margin-bottom:10px">手 动 复 制</div>' +
+      '<div style="font-size:13px;line-height:1.85;color:rgba(244,238,229,.72);margin-bottom:12px">浏览器拦住了自动复制，请长按或全选下面这串内容复制，发给 Ta。</div>' +
+      '<textarea id="copyText" readonly style="width:100%;height:104px;box-sizing:border-box;background:#12111A;color:#F4EEE5;border:1px solid rgba(244,238,229,.18);border-radius:8px;padding:10px;font-size:13px;line-height:1.7;resize:none"></textarea>' +
+      '<button id="copyClose" style="margin-top:14px;width:100%;padding:12px;border:0;border-radius:10px;background:#E08A45;color:#141320;font-size:14px;font-weight:600;cursor:pointer">复制好了，关闭</button>' +
+      '</div>';
+    document.body.appendChild(box);
+  }
+  const ta = box.querySelector('#copyText');
+  ta.value = text;
+  box.classList.remove('hidden');
+  setTimeout(()=>{ try{ ta.focus(); ta.select(); }catch(e){} }, 60);
+  box.querySelector('#copyClose').onclick = ()=>{ box.classList.add('hidden'); if(done) done(); };
+}
+let tt;
+function toast(m){
+  const el = $('toast'); el.textContent = m; el.classList.add('show');
+  clearTimeout(tt); tt = setTimeout(()=>el.classList.remove('show'), 2600);
+}
+
+/* ---------- 绑定 ---------- */
+$('startBtn').onclick = start;
+$('backBtn').onclick = back;
+$('shareBtn').onclick = shareCard;
+$('inviteBtn').onclick = invite;
+$('codeBtn').onclick = ()=>copy(myCode(), '答案码已复制，发给 ' + S.ta + '，让 Ta 粘贴进自己的测试里');
+$('pasteBtn').onclick = ()=>{
+  const b = $('pasteBox');
+  b.classList.toggle('hidden');
+  if(!b.classList.contains('hidden')) $('codeInput').focus();
+};
+$('codeCancel').onclick = ()=>{ $('pasteBox').classList.add('hidden'); $('codeInput').value = ''; };
+$('codeOk').onclick = ()=>{
+  const m = parseCode($('codeInput').value);
+  if(!m){ toast('这串码不对，检查一下有没有复制全'); return; }
+  manualCmp = m; $('pasteBox').classList.add('hidden'); $('codeInput').value = '';
+  handleCmp(score());
+  toast('已对上 ' + m.name + ' 的答案');
+  $('cmpBox').scrollIntoView({behavior:'smooth', block:'center'});
+};
+$('againBtn').onclick = ()=>{ S.i=0; S.ans=new Array(15).fill(null);
+  $('result').classList.add('hidden'); $('intro').classList.remove('hidden'); window.scrollTo(0,0); };
+document.addEventListener('keydown', e=>{
+  if($('quiz').classList.contains('hidden')) return;
+  const n = parseInt(e.key, 10);
+  if(n>=1 && n<=4) pick(n-1);
+  if(e.key==='Backspace' || e.key==='ArrowLeft') back();
+});
+
+/* 首屏：若链接自带对照数据（Ta 先测过），提示一下 */
+const LEDE = document.querySelector('#intro .lede').innerHTML;
+function showCmpHint(){
+  const p = document.querySelector('#intro .lede'), h = new URLSearchParams(hostHash().replace(/^#/, ''));
+  if(h.get('c') && h.get('cn')){
+    p.innerHTML = '<b style="color:var(--amber)">' + esc(h.get('cn')) +
+      ' 已经测过一次，并把这趟车的票递给了你。</b><br><br>你测完之后，会看到你们两人对同一段关系的视角对照。';
+  } else p.innerHTML = LEDE;
+}
+showCmpHint();
+window.addEventListener('hashchange', showCmpHint);
+</script>
+</body>
+</html>
